@@ -1,0 +1,103 @@
+<div>
+    
+    <div style="margin:16px;">
+        <h3>Products</h3>
+
+        <div style="display:flex;flex-direction: row;gap:16px; ">
+
+            <mat-form-field>
+                <input matInput (keyup)="handleFilterSearch($event)"   placeholder="type to search..." >
+    
+            </mat-form-field>
+               
+          
+    
+    
+           <mat-form-field style="width: 150px;">
+            <!-- <mat-icon style="position: absolute;">filter_list</mat-icon> -->
+            <mat-select (selectionChange)="handleFilterSelect($event.value)" placeholder="filterOption">
+              <mat-option>None</mat-option>
+              @for (displayedColumn of displayedColumns; track displayedColumn) {
+                @if(displayedColumn!=="action"){
+                <mat-option #fselect [value]="displayedColumn">{{displayedColumn}}</mat-option>
+                }
+              }
+            </mat-select>
+           </mat-form-field>
+               
+             
+        </div>
+        
+    </div>
+<!-- 
+    @if(error) {<div><p color="warn">Something Went Went Wrong</p></div>} -->
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+       class="mat-elevation-z8">
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+            Id
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+            Name
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Price Column -->
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+            Price
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+        
+
+        <ng-container matColumnDef="action" [style.width]="'50px'">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+            Action
+            </th>
+            <td mat-cell *matCellDef="let element"> 
+         
+                <button mat-mini-fab color="accent" class="row-delete-button" (click)="handleDelete(element.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+       
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr 
+        mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+   
+        <!-- <tr 
+            mat-row *matRowDef="let row; columns: displayedColumns;"
+            (mouseover)="clickedRows.add(row)"
+            (mouseout)="clickedRows.delete(row)"
+        ></tr> -->
+        <!-- <tr
+        
+            mat-row
+            (click)="clickedRows.add(row)"
+            (mouseover)="clickedRows.add(row)"
+            (mouseout)="clickedRows.delete(row)"
+            [class.demo-row-is-clicked]="clickedRows.has(row)"
+            *matRowDef="let row; columns: displayedColumns;"
+        ></tr> -->
+
+  
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of product elements">
+    </mat-paginator>
+
+    <button mat-raised-button color="warn" (click)="handleClick()">Show In Console</button>
+</div>

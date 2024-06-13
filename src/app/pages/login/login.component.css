@@ -1,0 +1,18 @@
+
+
+.container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-content{
+    
+    
+    max-width: 500px;
+    padding: 32px;
+    margin: 16px;
+    border: 2px solid #00dddd;
+    margin: 0 auto;
+   
+}

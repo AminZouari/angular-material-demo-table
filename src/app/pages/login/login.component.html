@@ -1,0 +1,26 @@
+<div class="container">
+    <mat-card [formGroup]="loginFormGroup" class="container-content">
+        
+        <mat-card-header style="color: #e0e3e2;" ><h2>Authentication</h2></mat-card-header>
+        <mat-card-content style="display: grid;margin: 0 auto;">
+
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput type="text" formControlName="username">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password">
+            </mat-form-field>
+            @if(authService.isAuthenticated==false){
+                <p style="color: #ffb787; margin: 0 auto;">Incorrect Credentials</p>
+
+            }
+            <button mat-flat-button	style="width: 100px;margin: 0 auto;margin-top: 16px;"	 color="Primary"
+                (click)="handleLogin()"
+            >
+                Login 
+            </button>
+        </mat-card-content>
+    </mat-card>
+</div>

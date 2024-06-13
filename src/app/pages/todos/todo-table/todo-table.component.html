@@ -1,0 +1,86 @@
+<div>
+   
+    <div style="margin:16px;">
+        @if(error){
+            <h1 style="color:red">Error</h1>
+        }
+        <h3>Todos</h3>
+
+        <div style="display:flex;flex-direction: row;gap:16px; ">
+
+            <mat-form-field>
+                <input matInput (keyup)="handleFilterSearch($event)"   placeholder="type to search..." >
+    
+            </mat-form-field>
+               
+          
+    
+    
+           <mat-form-field style="width: 150px;">
+            <!-- <mat-icon style="position: absolute;">filter_list</mat-icon> -->
+            <mat-select (selectionChange)="handleFilterSelect($event.value)" placeholder="filterOption">
+              <mat-option>None</mat-option>
+              @for (displayedColumn of displayedColumns; track displayedColumn) {
+                @if(displayedColumn!=="action"){
+                <mat-option #fselect [value]="displayedColumn">{{displayedColumn}}</mat-option>
+                }
+              }
+            </mat-select>
+           </mat-form-field>
+               
+             
+        </div>
+        
+    </div>
+
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+       class="mat-elevation-z8">
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+            Id
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- title Column -->
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by title">
+            Title
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+        </ng-container>
+
+        <!-- completed Column -->
+        <ng-container matColumnDef="completed">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+            Completed
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.completed}} </td>
+        </ng-container>
+        
+
+        <ng-container matColumnDef="view-user" [style.width]="'50px'">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+            View User
+            </th>
+            <td mat-cell *matCellDef="let element"> 
+         
+                <button mat-mini-fab color="primary" class="row-user-view-button" (click)="handleViewUser(element.userId)">
+                    <mat-icon>account_circle</mat-icon>
+                </button>
+            </td>
+       
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr 
+        mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of toods elements">
+    </mat-paginator>
+
+</div>            

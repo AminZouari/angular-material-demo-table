@@ -1,0 +1,26 @@
+.mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+  }
+  
+  .mat-mdc-row:hover .mat-mdc-cell {
+    border-color: currentColor;
+  }
+  .row-delete-button{
+    display: none;
+  }
+  .mat-mdc-row:hover .row-delete-button{
+    display: block;
+  }
+  .demo-row-is-clicked {
+    font-weight: bold;
+  }
+
+  .mat-column-action {
+   width: 100px;
+}
+.mat-mdc-select-value-text{
+  padding-left: 28px !important;
+  white-space: "";
+}

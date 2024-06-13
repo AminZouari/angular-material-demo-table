@@ -1,0 +1,6 @@
+.row-user-view-button{
+    display: none;
+  }
+  .mat-mdc-row:hover .row-user-view-button{
+    display: block;
+  }

@@ -1,0 +1,17 @@
+
+@if(user){
+<div>
+    <h4>{{ user.name }}</h4>
+
+    <div style="display: flex;flex-direction: column;">
+        <div style="display: flex; flex-direction: row; gap:4px">
+            <p>Email:</p>
+            <p>{{ user.email }}</p>
+        </div>
+        <div style="display: flex; flex-direction: row; gap:4px">
+            <p>Website:</p>
+            <p>{{ user.website }}</p>
+        </div>
+    </div>
+</div>
+}
